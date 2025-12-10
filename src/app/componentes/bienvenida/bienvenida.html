@@ -1,0 +1,57 @@
+<div class="bienvenida-container">
+  <div class="bienvenida-card">
+    <div class="bienvenida-header">
+      <h1>¡Bienvenido a CLIMASS!</h1>
+      <p class="subtitulo">Tu aplicación de clima y exploración 3D</p>
+    </div>
+
+    <div class="bienvenida-content">
+      <div class="avatar-section">
+        <div class="avatar-circle">
+          <span class="avatar-icon">👋</span>
+        </div>
+      </div>
+
+      <div class="nombre-section">
+        <label for="nombreUsuario">¿Cuál es tu nombre?</label>
+        <input 
+          type="text" 
+          id="nombreUsuario" 
+          [(ngModel)]="nombre" 
+          placeholder="Escribe tu nombre aquí"
+          (keyup.enter)="guardarNombre()"
+          #nombreInput
+          autofocus
+        >
+        <p class="instruccion">Presiona Enter para continuar</p>
+      </div>
+
+      <div class="info-section">
+        <div class="info-card">
+          <div class="info-icon">🌤️</div>
+          <h3>Clima en tiempo real</h3>
+          <p>Consulta el clima actual y pronósticos de cualquier ciudad del mundo</p>
+        </div>
+        
+        <div class="info-card">
+          <div class="info-icon">🏛️</div>
+          <h3>Monumentos cercanos</h3>
+          <p>Explora monumentos famosos en los alrededores de tu localidad</p>
+        </div>
+        
+        <div class="info-card">
+          <div class="info-icon">🗺️</div>
+          <h3>Mapas y turismo</h3>
+          <p>Descubre lugares turísticos cerca de tu ubicación</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bienvenida-footer">
+      <button class="btn-continuar" (click)="guardarNombre()" [disabled]="!nombre">
+        Continuar a CLIMASS
+      </button>
+      <p class="version">Versión 1.0.0</p>
+    </div>
+  </div>
+</div>

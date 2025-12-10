@@ -1,0 +1,153 @@
+@if (mostrarBienvenida) {
+  <app-bienvenida (nombreGuardado)="onNombreGuardado($event)"></app-bienvenida>
+} @else {
+  <div class="app-container">
+    <!-- Barra de navegación superior -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <h1 class="app-title">🌤️ Climass</h1>
+        @if (ciudadActual) {
+          <span class="ciudad-actual">📍 {{ ciudadActual }}</span>
+        }
+      </div>
+      
+      <div class="nav-center">
+        <div class="saludo">
+          👋 ¡Hola, {{ nombreUsuario }}!
+          @if (recomendacionVestimenta) {
+            <span class="recomendacion">💡 {{ recomendacionVestimenta }}</span>
+          }
+        </div>
+      </div>
+      
+      <div class="nav-right">
+        <button class="nav-btn" (click)="cambiarPantalla('principal')" 
+                [class.active]="pantallaActual === 'principal'">
+          🏠 Principal
+        </button>
+        <button class="nav-btn" (click)="cambiarPantalla('horas')"
+                [class.active]="pantallaActual === 'horas'">
+          ⏰ Por Horas
+        </button>
+        <button class="nav-btn" (click)="cambiarPantalla('semanal')"
+                [class.active]="pantallaActual === 'semanal'">
+          📅 Semanal
+        </button>
+        <button class="nav-btn" (click)="cambiarPantalla('turismo')"
+                [class.active]="pantallaActual === 'turismo'">
+          🏛️ Turismo
+        </button>
+        <button class="nav-btn usuario-btn" (click)="cambiarPantalla('cambiar-usuario')"
+                [class.active]="pantallaActual === 'cambiar-usuario'">
+          👤 {{ nombreUsuario }}
+        </button>
+      </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+      <!-- Barra lateral izquierda -->
+      <aside class="sidebar">
+        <div class="buscador-container">
+          <h3>🔍 Buscar Ciudad</h3>
+          <app-buscador-ciudad 
+            (ciudadSeleccionada)="procesarCiudad($event)">
+          </app-buscador-ciudad>
+        </div>
+
+        <!-- Clima actual en sidebar -->
+        @if (climaActual && pantallaActual === 'principal') {
+          <div class="clima-actual-sidebar">
+            <h3>🌡️ Ahora mismo</h3>
+            <div class="temperatura-ahora">
+              {{ climaActual.temperature }}°C
+            </div>
+            <p>{{ usuarioService.obtenerEmoticonClima(climaActual.weathercode) }}</p>
+          </div>
+        }
+      </aside>
+
+      <!-- Área de contenido dinámico -->
+      <div class="content-area">
+        @switch (pantallaActual) {
+          @case ('principal') {
+            <!-- PANTALLA PRINCIPAL -->
+            <div class="pantalla-principal">
+              <div class="mapa-container">
+                <h2>🗺️ Mapa de {{ ciudadActual || 'la ciudad' }}</h2>
+                <app-mapa-ciudad [lat]="lat" [lon]="lon"></app-mapa-ciudad>
+              </div>
+              <!-- En la pantalla principal, junto al mapa -->
+              <div class="cards-container">
+                <!-- Tu mapa actual -->
+                <div class="card mapa-card">
+                  <h3>🗺️ Mapa de {{ ciudadActual || 'la ciudad' }}</h3>
+                  <app-mapa-ciudad [lat]="lat" [lon]="lon"></app-mapa-ciudad>
+                </div>
+                
+                <!-- Nueva tarjeta con foto geográfica -->
+                <div class="card foto-geografica-card">
+                  <h3>🌍 Paisaje de {{ ciudadActual }}</h3>
+                  <app-foto-geografica
+                    [ciudad]="ciudadActual"
+                    [lat]="lat"
+                    [lon]="lon"
+                    [clima]="climaActual">
+                  </app-foto-geografica>
+                </div>
+              </div>
+              
+              <div class="cards-container">
+                <div class="card clima-card">
+                  <h3>🌈 Clima Actual</h3>
+                  <app-detalle-clima [climaActual]="climaActual"></app-detalle-clima>
+                </div>
+                
+                <div class="card recomendacion-card">
+                  <h3>👕 Recomendación</h3>
+                  <p class="recomendacion-texto">{{ recomendacionVestimenta || 'Busca una ciudad para ver recomendaciones' }}</p>
+                </div>
+              </div>
+            </div>
+          }
+          
+          @case ('horas') {
+            <!-- PANTALLA POR HORAS -->
+            <div class="pantalla-horas">
+              <h2>⏰ Clima por Horas</h2>
+              <app-clima-horas [datos]="climaPorHoras"></app-clima-horas>
+            </div>
+          }
+          
+          @case ('semanal') {
+            <!-- PANTALLA SEMANAL -->
+            <div class="pantalla-semanal">
+              <h2>📅 Clima Semanal</h2>
+              <app-clima-semanal [datos]="climaSemanal"></app-clima-semanal>
+            </div>
+          }
+          
+          @case ('turismo') {
+            <!-- PANTALLA TURISMO -->
+            <div class="pantalla-turismo">
+              <h2>🏛️ Lugares Turísticos</h2>
+              <app-turismo [lugares]="turismo"></app-turismo>
+            </div>
+          }
+          
+          @case ('cambiar-usuario') {
+            <!-- PANTALLA CAMBIAR USUARIO -->
+            <div class="pantalla-usuario">
+              <app-cambiar-usuario
+                (usuarioCambiado)="onUsuarioCambiado($event)"
+                (cerrarSesion)="onCerrarSesion()">
+              </app-cambiar-usuario>
+            </div>
+          }
+
+          
+        }
+      </div>
+    </main>
+  </div>
+}

@@ -1,0 +1,230 @@
+/* componentes/cambiar-usuario/cambiar-usuario.css */
+.cambiar-usuario-container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 25px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.usuario-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.usuario-header h3 {
+  color: #0c2461;
+  margin-bottom: 5px;
+  font-size: 1.5rem;
+}
+
+.subtitulo {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.usuario-activo {
+  background: linear-gradient(135deg, #4a69bd, #0c2461);
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.badge-activo {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.usuario-nombre {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.lista-usuarios {
+  margin: 20px 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.usuario-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  border: 2px solid transparent;
+}
+
+.usuario-item:hover {
+  background: #e9ecef;
+  transform: translateX(5px);
+}
+
+.usuario-item.activo {
+  background: #e3f2fd;
+  border-color: #4a69bd;
+}
+
+.avatar {
+  font-size: 1.5rem;
+  margin-right: 15px;
+}
+
+.nombre {
+  flex: 1;
+  color: #333;
+  font-weight: 500;
+}
+
+.btn-eliminar {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-eliminar:hover {
+  background: #ff5252;
+  transform: scale(1.1);
+}
+
+.formulario-nuevo {
+  margin: 25px 0;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-group input {
+  padding: 12px 15px;
+  border: 2px solid #4a69bd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #0c2461;
+  box-shadow: 0 0 0 3px rgba(12, 36, 97, 0.2);
+}
+
+.botones-form {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-agregar, .btn-cancelar, .btn-nuevo-usuario {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.btn-agregar {
+  background: #4a69bd;
+  color: white;
+}
+
+.btn-agregar:hover:not(:disabled) {
+  background: #0c2461;
+}
+
+.btn-agregar:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.btn-cancelar {
+  background: #f8f9fa;
+  color: #666;
+  border: 2px solid #dee2e6;
+}
+
+.btn-cancelar:hover {
+  background: #e9ecef;
+}
+
+.btn-nuevo-usuario {
+  background: #38d9a9;
+  color: white;
+  width: 100%;
+}
+
+.btn-nuevo-usuario:hover {
+  background: #20c997;
+}
+
+.cerrar-sesion-section {
+  border-top: 1px solid #dee2e6;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.btn-cerrar-sesion {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.btn-cerrar-sesion:hover {
+  background: #ff5252;
+  transform: translateY(-2px);
+}
+
+.info-usuarios {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+/* Scrollbar personalizado */
+.lista-usuarios::-webkit-scrollbar {
+  width: 8px;
+}
+
+.lista-usuarios::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.lista-usuarios::-webkit-scrollbar-thumb {
+  background: #4a69bd;
+  border-radius: 4px;
+}
+
+.lista-usuarios::-webkit-scrollbar-thumb:hover {
+  background: #0c2461;
+}

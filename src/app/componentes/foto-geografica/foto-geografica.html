@@ -1,0 +1,74 @@
+<div class="foto-geografica-container">
+  <!-- Encabezado con info -->
+  <div class="geografia-header">
+    <div class="geografia-info">
+      <span class="geografia-icono">{{ iconoGeografia }}</span>
+      <div class="geografia-texto">
+        <h3 class="ciudad-nombre">{{ ciudad }}</h3>
+        <p class="geografia-descripcion">{{ descripcion }}</p>
+      </div>
+    </div>
+    
+    <div class="clima-indicador" *ngIf="clima">
+      <span class="clima-icono">{{ obtenerIconoClima() }}</span>
+      <span class="temperatura" [style.color]="obtenerColorTemperatura()">
+        {{ redondearTemperatura(clima.temperature) }}°C
+      </span>
+    </div>
+  </div>
+
+  <!-- Foto principal -->
+  <div class="foto-container">
+    @if (isLoading) {
+      <div class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Detectando geografía de {{ ciudad }}...</p>
+      </div>
+    }
+    
+    @if (fotoUrl && !isLoading) {
+      <img 
+        [src]="fotoUrl" 
+        [alt]="'Paisaje de ' + ciudad + ' - ' + geografia"
+        class="foto-principal"
+        (load)="onImageLoad()"
+      />
+      
+      <!-- Etiqueta de geografía -->
+      <div class="etiqueta-geografia">
+        <span class="etiqueta-icono">{{ iconoGeografia }}</span>
+        <span class="etiqueta-texto">{{ geografia }}</span>
+      </div>
+    }
+    
+    @if (!fotoUrl && !isLoading && !error) {
+      <div class="placeholder-foto">
+        <p>Selecciona una ciudad para ver su paisaje</p>
+      </div>
+    }
+    
+    @if (error && !isLoading) {
+      <div class="error-message">
+        <p>{{ error }}</p>
+      </div>
+    }
+  </div>
+
+  <!-- Leyenda de la foto -->
+  <div class="leyenda-foto" *ngIf="fotoUrl && !isLoading">
+    <div class="leyenda-item">
+      <span class="leyenda-icono">{{ iconoGeografia }}</span>
+      <span class="leyenda-texto">Tipo de paisaje: {{ geografia.toLowerCase() }}</span>
+    </div>
+    
+    <div class="leyenda-item" *ngIf="clima">
+      <span class="leyenda-icono">{{ obtenerIconoClima() }}</span>
+      <span class="leyenda-texto">
+        Clima: {{ clima.temperature > 30 ? 'Muy cálido' : 
+                clima.temperature > 25 ? 'Cálido' : 
+                clima.temperature < 5 ? 'Frío' : 
+                clima.temperature < 10 ? 'Fresco' : 'Templado' }}
+      </span>
+    </div>
+  </div>
+</div>

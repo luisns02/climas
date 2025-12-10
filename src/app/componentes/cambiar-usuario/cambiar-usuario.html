@@ -1,0 +1,73 @@
+<!-- componentes/cambiar-usuario/cambiar-usuario.html -->
+<div class="cambiar-usuario-container">
+  <div class="usuario-header">
+    <h3>👥 Cambiar de Usuario</h3>
+    <p class="subtitulo">Selecciona un usuario o crea uno nuevo</p>
+  </div>
+
+  <!-- Usuario actual -->
+  @if (usuarioActivo) {
+    <div class="usuario-activo">
+      <div class="badge-activo">✓ Activo</div>
+      <span class="usuario-nombre">{{ usuarioActivo }}</span>
+    </div>
+  }
+
+  <!-- Lista de usuarios -->
+  <div class="lista-usuarios">
+    @for (usuario of usuarios; track usuario) {
+      <div class="usuario-item" 
+           [class.activo]="usuario === usuarioActivo"
+           (click)="seleccionarUsuario(usuario)">
+        <span class="avatar">👤</span>
+        <span class="nombre">{{ usuario }}</span>
+        
+        <!-- Botón eliminar (solo si no es el activo) -->
+        @if (usuario !== usuarioActivo) {
+          <button class="btn-eliminar" 
+                  (click)="eliminarUsuario(usuario, $event)">
+            🗑️
+          </button>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Formulario para nuevo usuario -->
+  <div class="formulario-nuevo">
+    @if (mostrarFormularioNuevo) {
+      <div class="input-group">
+        <input 
+          type="text" 
+          [(ngModel)]="nuevoUsuario"
+          placeholder="Nombre del nuevo usuario"
+          (keyup.enter)="agregarUsuario()"
+          #nuevoUsuarioInput
+          autofocus
+        >
+        <div class="botones-form">
+          <button class="btn-agregar" (click)="agregarUsuario()" [disabled]="!nuevoUsuario.trim()">
+            Agregar
+          </button>
+          <button class="btn-cancelar" (click)="mostrarFormularioNuevo = false">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    } @else {
+      <button class="btn-nuevo-usuario" (click)="mostrarFormularioNuevo = true">
+        + Nuevo Usuario
+      </button>
+    }
+  </div>
+
+  <!-- Botón cerrar sesión -->
+  @if (usuarioActivo) {
+    <div class="cerrar-sesion-section">
+      <button class="btn-cerrar-sesion" (click)="cerrarSesionUsuario()">
+        🚪 Cerrar Sesión
+      </button>
+      <p class="info-usuarios">Usuarios registrados: {{ usuarios.length }}</p>
+    </div>
+  }
+</div>

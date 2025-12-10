@@ -1,0 +1,22 @@
+@if (datos) {
+  <div class="horas-container">
+    <div class="horas-grid">
+      @for (hora of datos.hourly.time.slice(0, 24); track $index; let i = $index) {
+        <div class="hora-card">
+          <div class="hora">{{ obtenerHora(hora) }}</div>
+          <div class="temperatura">
+            {{ datos.hourly.temperature_2m[i] }}°C
+          </div>
+          <div class="icono">
+            {{ usuarioService.obtenerEmoticonClima(datos.hourly.weathercode[i]) }}
+          </div>
+          <div class="detalle">
+            💨 {{ datos.hourly.windspeed_10m[i] }} km/h
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+} @else {
+  <p class="sin-datos">Busca una ciudad para ver el clima por horas</p>
+}

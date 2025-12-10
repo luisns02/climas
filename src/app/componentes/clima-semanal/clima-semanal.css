@@ -1,0 +1,43 @@
+/* =================== Clima semanal estilo horas =================== */
+.semana-grid {
+  display: flex;
+  gap: 10px; /* mismo gap que horas */
+  overflow-x: auto;
+}
+
+.dia-card {
+  min-width: 120px; /* igual que hora-card */
+  padding: 15px;    /* mismo padding */
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.dia-card:hover {
+  transform: translateY(-5px);
+}
+
+.dia {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.temperatura {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #667eea;
+  margin: 10px 0;
+}
+
+.icono {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.detalle {
+  font-size: 0.9rem;
+  color: #666;
+}

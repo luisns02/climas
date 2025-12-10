@@ -1,0 +1,26 @@
+@if (climaActual) {
+  <div class="detalle-clima-card">
+    <div class="clima-header">
+      <span class="temperatura-grande">{{ climaActual.temperature }}°C</span>
+      <span class="icono-clima">{{ climaActual.weathercode | descripcionClima }}</span>
+    </div>
+    
+    <div class="clima-detalles">
+      <div class="detalle-item">
+        <span class="icono">💨</span>
+        <div class="texto">
+          <div class="titulo">Viento</div>
+          <div class="valor">{{ climaActual.windspeed }} km/h</div>
+        </div>
+      </div>
+      
+      <div class="detalle-item">
+        <span class="icono">🧭</span>
+        <div class="texto">
+          <div class="titulo">Dirección</div>
+          <div class="valor">{{ climaActual.winddirection }}°</div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

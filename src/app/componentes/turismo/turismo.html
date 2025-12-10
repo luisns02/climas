@@ -1,0 +1,32 @@
+<div *ngIf="lugares && lugares.length > 0" class="turismo-container">
+  <h3 class="titulo-seccion">Lugares Turísticos ({{ lugares.length }})</h3>
+  
+  <div class="lugares-grid">
+    <div *ngFor="let lugar of lugares; let i = index" class="lugar-card">
+      <!-- Contenedor de imagen -->
+      <div class="lugar-imagen-container">
+        <img [src]="lugar?.imagenUrl || 'https://via.placeholder.com/300x200?text=Imagen+no+disponible'" 
+             [alt]="lugar?.tags?.name || 'Lugar turístico'"
+             class="lugar-imagen"
+             (error)="lugar.imagenUrl = 'https://via.placeholder.com/300x200?text=Error+imagen'">
+        
+        <!-- Badge del tipo -->
+        <span class="badge-tipo">{{ getTipoTexto(lugar?.tags?.tourism) }}</span>
+      </div>
+      
+      <!-- Información del lugar -->
+      <div class="lugar-info">
+        <h4 class="nombre-lugar">{{ lugar?.tags?.name || 'Sin nombre' }}</h4>
+        <p class="tipo-lugar">{{ getTipoTexto(lugar?.tags?.tourism) }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!lugares || lugares.length === 0" class="sin-lugares">
+  <div class="mensaje-vacio">
+    <i class="icono-vacio">🏛️</i>
+    <h3>No se encontraron lugares turísticos para esta ciudad.</h3>
+    <p>Intenta buscar otra ciudad o verifica tu conexión a internet.</p>
+  </div>
+</div>

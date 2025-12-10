@@ -1,0 +1,23 @@
+@if (datos) {
+  <div class="semanal-container">
+    <div class="dias-grid">
+      @for (dia of datos.daily.time; track $index; let i = $index) {
+        <div class="dia-card">
+          <div class="fecha">{{ obtenerDia(dia) }}</div>
+          <div class="icono-dia">
+            {{ usuarioService.obtenerEmoticonClima(datos.daily.weathercode[i]) }}
+          </div>
+          <div class="temperaturas">
+            <span class="temp-max">{{ datos.daily.temperature_2m_max[i] }}°</span>
+            <span class="temp-min">{{ datos.daily.temperature_2m_min[i] }}°</span>
+          </div>
+          <div class="descripcion">
+            {{ datos.daily.weathercode[i] | descripcionClima }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+} @else {
+  <p class="sin-datos">Busca una ciudad para ver el clima semanal</p>
+}

@@ -1,0 +1,55 @@
+/* src/app/componentes/clima-horas/clima-horas.css */
+.horas-container {
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.horas-grid {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+}
+
+.hora-card {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 12px;
+  padding: 15px;
+  min-width: 120px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.hora-card:hover {
+  transform: translateY(-5px);
+}
+
+.hora {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.temperatura {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #667eea;
+  margin: 10px 0;
+}
+
+.icono {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+.detalle {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.sin-datos {
+  text-align: center;
+  color: #888;
+  padding: 40px;
+  font-style: italic;
+}

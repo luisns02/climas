@@ -1,0 +1,164 @@
+.turismo-container {
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-top: 20px;
+}
+
+.titulo-seccion {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #3498db;
+  font-weight: 600;
+}
+
+.lugares-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.lugar-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.lugar-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+  border-color: #3498db;
+}
+
+.lugar-imagen-container {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.lugar-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.lugar-card:hover .lugar-imagen {
+  transform: scale(1.05);
+}
+
+/* CORREGIDO: De .lugar-tipo-badge a .badge-tipo */
+.badge-tipo {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: rgba(52, 152, 219, 0.95);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.lugar-info {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* CORREGIDO: De .lugar-nombre a .nombre-lugar */
+.nombre-lugar {
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* CORREGIDO: De .lugar-detalles a nada (no se usa en HTML) */
+/* Eliminado: .lugar-detalles { ... } */
+
+/* CORREGIDO: De .lugar-tipo a .tipo-lugar */
+.tipo-lugar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #f8f9fa;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: #7f8c8d;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.tipo-lugar i {
+  color: #3498db;
+}
+
+/* CORREGIDO: De .no-lugares a .sin-lugares */
+.sin-lugares {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-top: 20px;
+}
+
+.mensaje-vacio {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.mensaje-vacio .icono-vacio {
+  font-size: 4rem;
+  color: #bdc3c7;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.mensaje-vacio h3 {
+  color: #7f8c8d;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.mensaje-vacio p {
+  color: #95a5a6;
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lugares-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  
+  .titulo-seccion {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lugares-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .lugar-imagen-container {
+    height: 160px;
+  }
+}
